@@ -1,0 +1,18 @@
+import sys;
+sys.path.insert(1,'lib/');
+import c_setter as c;
+
+func r_(url:str):
+    return c.REQUEST(url,int(100))+'\n'
+
+func log(msg):
+    p("[INFO] " + msg)
+
+
+@url = input("Enter Url: ")
+@port = input("Port : ")
+@_range = int(input("Enter Range: "))
+
+for i in range(_range):
+    log(f"R({i}) "+r_(@url))
+

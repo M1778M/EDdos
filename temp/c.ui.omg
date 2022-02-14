@@ -1,0 +1,24 @@
+sys = importpy("sys");
+argparse = importpy("argparse");
+sys.path.insert(1,'lib/');
+c = importpy("c_setter");
+
+func r_(url:str):
+    return c.REQUEST(url,int(100))+'\n'
+
+function('log',args=['msg'],lines=['p("[INFO] "+msg)']).exe()
+
+@parser = argparse->ArgumentParser();
+
+parser->add_argument('-u','--url-target',help="Get The URL.",type=str);
+parser->add_argument('-p','--port',help="Get The Port. Default = 80",type=int,default=80);
+parser->add_argument('-r','--range-of-attack',help='Range Of Attack. Default = 100',type=int,default=100);
+
+@args = parser.parse_args()
+
+if args.url_target:
+    for i in range(args.range_of_attack):
+        log(f"[{i}]"+r_())
+else:
+    raise ValueError("Can't Find Value Of URL.")
+
